@@ -1,17 +1,19 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-namespace Klak.Motion
+namespace Klak.Timeline
 {
-    [TrackColor(0.9454092f, 0.9779412f, 0.3883002f)]
-    [TrackClipType(typeof(Offset))]
+    [TrackColor(0.4f, 0.4f, 0.4f)]
+    [TrackClipType(typeof(Motion))]
     [TrackBindingType(typeof(Transform))]
-    public class OffsetTrack : TrackAsset
+    public class MotionTrack : TrackAsset
     {
+        #region TrackAsset overrides
+
         public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
         {
-            return ScriptPlayable<OffsetMixer>.Create(graph, inputCount);
+            return ScriptPlayable<MotionMixer>.Create(graph, inputCount);
         }
 
         public override void GatherProperties(PlayableDirector director, IPropertyCollector driver)
@@ -27,5 +29,7 @@ namespace Klak.Motion
             driver.AddFromName<Transform>(go, "m_LocalRotation.y");
             driver.AddFromName<Transform>(go, "m_LocalRotation.z");
         }
+
+        #endregion
     }
 }

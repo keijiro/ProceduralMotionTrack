@@ -2,17 +2,21 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-namespace Klak.Motion
+namespace Klak.Timeline
 {
     [System.Serializable]
-    class BrownianMixer : PlayableBehaviour
+    class MotionMixer : PlayableBehaviour
     {
-        Transform _target;
+        #region Private state
 
+        Transform _target;
         Vector3 _initialPosition;
         Quaternion _initialRotation;
-
         bool _initialized;
+
+        #endregion
+
+        #region PlayableBehaviour overrides
 
         public override void ProcessFrame(Playable playable, FrameData info, object playerData)
         {
@@ -26,21 +30,26 @@ namespace Klak.Motion
                 _initialized = true;
             }
 
-            var inputCount = playable.GetInputCount();
-
             var position = _initialPosition;
             var rotation = _initialRotation;
 
-
+            var inputCount = playable.GetInputCount();
             for (var i = 0; i < inputCount; i++)
             {
-                var input = (ScriptPlayable<BrownianPlayable>)playable.GetInput(i);
-                var brownian = input.GetBehaviour();
+                var input = (ScriptPlayable<MotionPlayable>)playable.GetInput(i);
+                var motion = input.GetBehaviour();
                 var weight = playable.GetInputWeight(i);
                 var time = (float)input.GetTime();
+                var normalizedTime = time / (float)input.GetDuration();
 
-                position += brownian.CalculatePosition(time) * weight;
-                rotation *= Quaternion.Euler(brownian.CalculateRotation(time) * weight);
+                weight *= motion.envelope.Evaluate(normalizedTime);
+                if (weight < 0.001f) continue;
+
+                var mpos = motion.CalculatePosition(time);
+                var mrot = motion.CalculateRotation(time);
+
+                position += mpos * weight;
+                rotation *= Quaternion.Euler(mrot * weight);
             }
 
             _target.localPosition = position;
@@ -57,5 +66,7 @@ namespace Klak.Motion
 
             _initialized = false;
         }
+
+        #endregion
     }
 }
