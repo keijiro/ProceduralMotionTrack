@@ -5,15 +5,15 @@ using UnityEngine.Timeline;
 namespace Klak.Timeline
 {
     [TrackColor(0.4f, 0.4f, 0.4f)]
-    [TrackClipType(typeof(Motion))]
+    [TrackClipType(typeof(Offset))]
     [TrackBindingType(typeof(Transform))]
-    public class MotionTrack : TrackAsset
+    public class OffsetTrack : TrackAsset
     {
         #region TrackAsset overrides
 
         public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
         {
-            return ScriptPlayable<MotionMixer>.Create(graph, inputCount);
+            return ScriptPlayable<OffsetMixer>.Create(graph, inputCount);
         }
 
         public override void GatherProperties(PlayableDirector director, IPropertyCollector driver)

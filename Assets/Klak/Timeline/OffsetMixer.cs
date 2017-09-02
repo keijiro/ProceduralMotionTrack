@@ -5,7 +5,7 @@ using UnityEngine.Timeline;
 namespace Klak.Timeline
 {
     [System.Serializable]
-    class MotionMixer : PlayableBehaviour
+    class OffsetMixer : PlayableBehaviour
     {
         #region Private state
 
@@ -36,7 +36,7 @@ namespace Klak.Timeline
             var inputCount = playable.GetInputCount();
             for (var i = 0; i < inputCount; i++)
             {
-                var input = (ScriptPlayable<MotionPlayable>)playable.GetInput(i);
+                var input = (ScriptPlayable<OffsetPlayable>)playable.GetInput(i);
                 var motion = input.GetBehaviour();
                 var weight = playable.GetInputWeight(i);
                 var time = (float)input.GetTime();

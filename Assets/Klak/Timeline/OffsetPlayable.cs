@@ -5,18 +5,15 @@ using Klak.Math;
 namespace Klak.Timeline
 {
     [System.Serializable]
-    public class MotionPlayable : PlayableBehaviour
+    public class OffsetPlayable : PlayableBehaviour
     {
         #region Serialized variables
 
-        public Vector3 positionOffset = Vector3.zero;
-        public Vector3 rotationOffset = Vector3.zero;
-
-        public Vector3 positionNoise = Vector3.zero;
-        public Vector3 rotationNoise = Vector3.zero;
+        public Vector3 position = Vector3.zero;
+        public Vector3 rotation = Vector3.zero;
 
         public float noiseFrequency = 0.1f;
-        public int noiseOctaveCount = 3;
+        public int noiseOctaveCount = 0;
 
         public float amplitude = 1;
         public AnimationCurve envelope = AnimationCurve.Linear(0, 1, 1, 1);
@@ -25,9 +22,9 @@ namespace Klak.Timeline
 
         #endregion
 
-        #region Private constants
+        #region Private members
 
-        const float _fbmNorm = 1 / 0.75f;
+        const float kNoiseNormalize = 1 / 0.75f;
 
         #endregion
 
@@ -35,9 +32,9 @@ namespace Klak.Timeline
 
         public Vector3 CalculatePosition(float time)
         {
-            var v = positionOffset;
+            var v = position;
 
-            if (positionNoise != Vector3.zero)
+            if (noiseOctaveCount > 0)
             {
                 var hash = new XXHash(randomSeed);
                 var t = time * noiseFrequency;
@@ -46,7 +43,7 @@ namespace Klak.Timeline
                     Perlin.Fbm(hash.Range(-1e3f, 1e3f, 1) + t, noiseOctaveCount),
                     Perlin.Fbm(hash.Range(-1e3f, 1e3f, 2) + t, noiseOctaveCount)
                 );
-                v += Vector3.Scale(n, positionNoise) * _fbmNorm;
+                v += Vector3.Scale(n, v) * kNoiseNormalize;
             }
 
             return v * amplitude;
@@ -54,9 +51,9 @@ namespace Klak.Timeline
 
         public Vector3 CalculateRotation(float time)
         {
-            var v = rotationOffset;
+            var v = rotation;
 
-            if (rotationNoise != Vector3.zero)
+            if (noiseOctaveCount > 0)
             {
                 var hash = new XXHash(randomSeed);
                 var t = time * noiseFrequency;
@@ -65,7 +62,7 @@ namespace Klak.Timeline
                     Perlin.Fbm(hash.Range(-1e3f, 1e3f, 1) + t, noiseOctaveCount),
                     Perlin.Fbm(hash.Range(-1e3f, 1e3f, 2) + t, noiseOctaveCount)
                 );
-                v += Vector3.Scale(n, rotationNoise) * _fbmNorm;
+                v += Vector3.Scale(n, v) * kNoiseNormalize;
             }
 
             return v * amplitude;

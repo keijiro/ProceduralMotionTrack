@@ -5,11 +5,11 @@ using UnityEngine.Timeline;
 namespace Klak.Timeline
 {
     [System.Serializable]
-    public class Motion : PlayableAsset, ITimelineClipAsset
+    public class Offset : PlayableAsset, ITimelineClipAsset
     {
         #region Serialized variables
 
-        public MotionPlayable template = new MotionPlayable();
+        public OffsetPlayable template = new OffsetPlayable();
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace Klak.Timeline
 
         public override Playable CreatePlayable(PlayableGraph graph, GameObject go)
         {
-            return ScriptPlayable<MotionPlayable>.Create(graph, template);
+            return ScriptPlayable<OffsetPlayable>.Create(graph, template);
         }
 
         #endregion
