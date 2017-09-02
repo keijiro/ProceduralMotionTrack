@@ -11,17 +11,12 @@ namespace Klak.Timeline
         SerializedProperty _rotation;
 
         SerializedProperty _noiseFrequency;
-        SerializedProperty _noiseOctaveCount;
+        SerializedProperty _noiseOctaves;
 
         SerializedProperty _amplitude;
         SerializedProperty _envelope;
 
         SerializedProperty _randomSeed;
-
-        static class Styles
-        {
-            static public readonly GUIContent octaveCount = new GUIContent("Octave Count");
-        }
 
         void OnEnable()
         {
@@ -29,7 +24,7 @@ namespace Klak.Timeline
             _rotation = serializedObject.FindProperty("template.rotation");
 
             _noiseFrequency = serializedObject.FindProperty("template.noiseFrequency");
-            _noiseOctaveCount = serializedObject.FindProperty("template.noiseOctaveCount");
+            _noiseOctaves = serializedObject.FindProperty("template.noiseOctaves");
 
             _amplitude = serializedObject.FindProperty("template.amplitude");
             _envelope = serializedObject.FindProperty("template.envelope");
@@ -47,9 +42,7 @@ namespace Klak.Timeline
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(_noiseFrequency);
-            EditorGUI.indentLevel++;
-            EditorGUILayout.IntSlider(_noiseOctaveCount, 0, 9, Styles.octaveCount);
-            EditorGUI.indentLevel--;
+            EditorGUILayout.IntSlider(_noiseOctaves, 0, 9);
 
             EditorGUILayout.Space();
 

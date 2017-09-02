@@ -36,20 +36,12 @@ namespace Klak.Timeline
             var inputCount = playable.GetInputCount();
             for (var i = 0; i < inputCount; i++)
             {
-                var input = (ScriptPlayable<OffsetPlayable>)playable.GetInput(i);
-                var motion = input.GetBehaviour();
                 var weight = playable.GetInputWeight(i);
-                var time = (float)input.GetTime();
-                var normalizedTime = time / (float)input.GetDuration();
+                if (Mathf.Approximately(weight, 0)) continue;
 
-                weight *= motion.envelope.Evaluate(normalizedTime);
-                if (weight < 0.001f) continue;
-
-                var mpos = motion.CalculatePosition(time);
-                var mrot = motion.CalculateRotation(time);
-
-                position += mpos * weight;
-                rotation *= Quaternion.Euler(mrot * weight);
+                var input = ((ScriptPlayable<OffsetPlayable>)playable.GetInput(i)).GetBehaviour();
+                position += input.currentPosition * weight;
+                rotation *= Quaternion.Euler(input.currentRotation * weight);
             }
 
             _target.localPosition = position;

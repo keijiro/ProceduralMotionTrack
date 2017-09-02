@@ -15,9 +15,7 @@ namespace Klak.Timeline
 
         #region ITimelineClipAsset implementation
 
-        public ClipCaps clipCaps {
-            get { return ClipCaps.Blending | ClipCaps.Extrapolation; }
-        }
+        public ClipCaps clipCaps { get { return ClipCaps.Blending; } }
 
         #endregion
 
