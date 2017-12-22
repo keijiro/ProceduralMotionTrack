@@ -10,6 +10,8 @@ namespace Klak.Timeline
     [TrackColor(0.4f, 0.4f, 0.4f)]
     [TrackClipType(typeof(BrownianMotion))]
     [TrackClipType(typeof(ConstantMotion))]
+    [TrackClipType(typeof(CyclicMotion))]
+    [TrackClipType(typeof(JitterMotion))]
     [TrackBindingType(typeof(Transform))]
     public class ProceduralMotionTrack : TrackAsset
     {

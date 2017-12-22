@@ -47,19 +47,19 @@ namespace Klak.Timeline
             var target = playerData as Transform;
             if (target == null) return;
 
-            var nt = (float)playable.GetTime() * frequency;
+            var t = (float)playable.GetTime() * frequency;
             var w = info.weight / 0.75f; // normalized weight
 
             var np = new Vector3(
-                Perlin.Fbm(_positionOffset.x + nt, octaves),
-                Perlin.Fbm(_positionOffset.y + nt, octaves),
-                Perlin.Fbm(_positionOffset.z + nt, octaves)
+                Perlin.Fbm(_positionOffset.x + t, octaves),
+                Perlin.Fbm(_positionOffset.y + t, octaves),
+                Perlin.Fbm(_positionOffset.z + t, octaves)
             );
 
             var nr = new Vector3(
-                Perlin.Fbm(_rotationOffset.x + nt, octaves),
-                Perlin.Fbm(_rotationOffset.y + nt, octaves),
-                Perlin.Fbm(_rotationOffset.z + nt, octaves)
+                Perlin.Fbm(_rotationOffset.x + t, octaves),
+                Perlin.Fbm(_rotationOffset.y + t, octaves),
+                Perlin.Fbm(_rotationOffset.z + t, octaves)
             );
 
             np = Vector3.Scale(np, positionAmount) * w;
