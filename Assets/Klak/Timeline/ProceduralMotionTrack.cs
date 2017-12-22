@@ -1,3 +1,6 @@
+// Custom timeline track for procedural motion
+// https://github.com/keijiro/ProceduralMotionTrack
+
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -5,15 +8,14 @@ using UnityEngine.Timeline;
 namespace Klak.Timeline
 {
     [TrackColor(0.4f, 0.4f, 0.4f)]
-    [TrackClipType(typeof(Offset))]
+    [TrackClipType(typeof(BrownianMotion))]
+    [TrackClipType(typeof(ConstantMotion))]
     [TrackBindingType(typeof(Transform))]
-    public class OffsetTrack : TrackAsset
+    public class ProceduralMotionTrack : TrackAsset
     {
-        #region TrackAsset overrides
-
         public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
         {
-            return ScriptPlayable<OffsetMixer>.Create(graph, inputCount);
+            return ScriptPlayable<ProceduralMotionMixer>.Create(graph, inputCount);
         }
 
         public override void GatherProperties(PlayableDirector director, IPropertyCollector driver)
@@ -29,7 +31,5 @@ namespace Klak.Timeline
             driver.AddFromName<Transform>(go, "m_LocalRotation.y");
             driver.AddFromName<Transform>(go, "m_LocalRotation.z");
         }
-
-        #endregion
     }
 }

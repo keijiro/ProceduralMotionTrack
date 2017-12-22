@@ -1,3 +1,6 @@
+// Custom timeline track for procedural motion
+// https://github.com/keijiro/ProceduralMotionTrack
+
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -5,17 +8,17 @@ using UnityEngine.Timeline;
 namespace Klak.Timeline
 {
     [System.Serializable]
-    public class Offset : PlayableAsset, ITimelineClipAsset
+    public class BrownianMotion : PlayableAsset, ITimelineClipAsset
     {
         #region Serialized variables
 
-        public OffsetPlayable template = new OffsetPlayable();
+        public BrownianMotionPlayable template = new BrownianMotionPlayable();
 
         #endregion
 
         #region ITimelineClipAsset implementation
 
-        public ClipCaps clipCaps { get { return ClipCaps.Blending; } }
+        public ClipCaps clipCaps { get { return ClipCaps.Blending | ClipCaps.Extrapolation; } }
 
         #endregion
 
@@ -23,7 +26,7 @@ namespace Klak.Timeline
 
         public override Playable CreatePlayable(PlayableGraph graph, GameObject go)
         {
-            return ScriptPlayable<OffsetPlayable>.Create(graph, template);
+            return ScriptPlayable<BrownianMotionPlayable>.Create(graph, template);
         }
 
         #endregion
