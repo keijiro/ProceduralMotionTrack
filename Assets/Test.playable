@@ -172,15 +172,83 @@ MonoBehaviour:
   m_Clips:
   - m_Start: 0
     m_ClipIn: 0
-    m_Asset: {fileID: 114990296390025178}
-    m_UnderlyingAsset: {fileID: 114990296390025178}
-    m_Duration: 7.1
+    m_Asset: {fileID: 114609306597370520}
+    m_UnderlyingAsset: {fileID: 114609306597370520}
+    m_Duration: 2
     m_TimeScale: 1
     m_ParentTrack: {fileID: 114022025085326614}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
-    m_BlendOutDuration: 2.1999999999999993
+    m_BlendOutDuration: 0.5
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 1
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: ConstantMotion
+    m_Version: 1
+  - m_Start: 1.5
+    m_ClipIn: 0
+    m_Asset: {fileID: 114411124683644476}
+    m_UnderlyingAsset: {fileID: 114411124683644476}
+    m_Duration: 3
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 114022025085326614}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0.5
+    m_BlendOutDuration: 0.5000000000000018
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: CyclicMotion
+    m_Version: 1
+  - m_Start: 3.9999999999999982
+    m_ClipIn: 0
+    m_Asset: {fileID: 114990296390025178}
+    m_UnderlyingAsset: {fileID: 114990296390025178}
+    m_Duration: 3
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 114022025085326614}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0.5000000000000018
+    m_BlendOutDuration: 0.5000000000000018
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -228,17 +296,75 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: BrownianMotion
     m_Version: 1
-  - m_Start: 4.9
+  - m_Start: 6.4999999999999964
     m_ClipIn: 0
-    m_Asset: {fileID: 114609306597370520}
-    m_UnderlyingAsset: {fileID: 114609306597370520}
-    m_Duration: 6.716666666666669
+    m_Asset: {fileID: 114822265368782722}
+    m_UnderlyingAsset: {fileID: 114822265368782722}
+    m_Duration: 2
     m_TimeScale: 1
     m_ParentTrack: {fileID: 114022025085326614}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 2.1999999999999993
-    m_BlendOutDuration: 1.8000000000000025
+    m_BlendInDuration: 0.5000000000000018
+    m_BlendOutDuration: 0.49999999999999645
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: JitterMotion
+    m_Version: 1
+  - m_Start: 8
+    m_ClipIn: 0
+    m_Asset: {fileID: 114553660632954826}
+    m_UnderlyingAsset: {fileID: 114609306597370520}
+    m_Duration: 2
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 114022025085326614}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0.49999999999999645
+    m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -282,125 +408,9 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: ConstantMotion
-    m_Version: 1
-  - m_Start: 9.816666666666666
-    m_ClipIn: 0
-    m_Asset: {fileID: 114411124683644476}
-    m_UnderlyingAsset: {fileID: 114411124683644476}
-    m_Duration: 5
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 114022025085326614}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: 1.8000000000000025
-    m_BlendOutDuration: 0.8666666666666671
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
-    m_PostExtrapolationTime: 0
-    m_PreExtrapolationTime: 0
-    m_DisplayName: CyclicMotion
-    m_Version: 1
-  - m_Start: 13.95
-    m_ClipIn: 0
-    m_Asset: {fileID: 114822265368782722}
-    m_UnderlyingAsset: {fileID: 114822265368782722}
-    m_Duration: 5
-    m_TimeScale: 1
-    m_ParentTrack: {fileID: 114022025085326614}
-    m_EaseInDuration: 0
-    m_EaseOutDuration: 0
-    m_BlendInDuration: 0.8666666666666671
-    m_BlendOutDuration: -1
-    m_MixInCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_MixOutCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_BlendInCurveMode: 0
-    m_BlendOutCurveMode: 0
-    m_ExposedParameterNames: []
-    m_AnimationCurves: {fileID: 0}
-    m_Recordable: 0
-    m_PostExtrapolationMode: 0
-    m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: Infinity
     m_PreExtrapolationTime: 0
-    m_DisplayName: JitterMotion
+    m_DisplayName: ConstantMotion
     m_Version: 1
 --- !u!114 &114099067799433330
 MonoBehaviour:
@@ -705,10 +715,10 @@ MonoBehaviour:
   m_Name: CyclicMotion
   m_EditorClassIdentifier: 
   template:
-    positionAmount: {x: 1, y: 1, z: 1}
-    positionFrequency: {x: 1.44, y: 1, z: 1.26}
+    positionAmount: {x: 1, y: 0.1, z: 1}
+    positionFrequency: {x: 5.5, y: 8, z: 2.52}
     rotationAmount: {x: 10, y: 10, z: 10}
-    rotationFrequency: {x: 1.72, y: 1.99, z: 2.73}
+    rotationFrequency: {x: 4.32, y: 3.12, z: 7.33}
 --- !u!114 &114476020900823026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -726,6 +736,20 @@ MonoBehaviour:
     frequency: 0
     octaves: 1
     randomSeed: 0
+--- !u!114 &114553660632954826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5692ae3f7b3460943a1e33ff3dcecab6, type: 3}
+  m_Name: ConstantMotion
+  m_EditorClassIdentifier: 
+  template:
+    position: {x: 0, y: -0.5, z: 0}
+    rotation: {x: 0, y: 45, z: 0}
 --- !u!114 &114609306597370520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -738,8 +762,8 @@ MonoBehaviour:
   m_Name: ConstantMotion
   m_EditorClassIdentifier: 
   template:
-    position: {x: 0, y: 1, z: 0}
-    rotation: {x: 45, y: 45, z: 0}
+    position: {x: 0, y: -0.5, z: 0}
+    rotation: {x: 0, y: 45, z: 0}
 --- !u!114 &114738748587151014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -877,8 +901,8 @@ MonoBehaviour:
   m_Name: BrownianMotion
   m_EditorClassIdentifier: 
   template:
-    positionAmount: {x: 1, y: 1, z: 1}
-    rotationAmount: {x: 10, y: 10, z: 10}
-    frequency: 1
-    octaves: 2
+    positionAmount: {x: 1, y: 0.5, z: 1}
+    rotationAmount: {x: 30, y: 30, z: 30}
+    frequency: 1.5
+    octaves: 4
     randomSeed: 0
