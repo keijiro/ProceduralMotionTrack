@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 
 namespace Klak.Timeline
 {
-    [CustomEditor(typeof(BrownianMotion))]
+    [CustomEditor(typeof(BrownianMotion)), CanEditMultipleObjects]
     class BrownianMotionEditor : Editor
     {
         SerializedProperty _positionAmount;

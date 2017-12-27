@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 
 namespace Klak.Timeline
 {
-    [CustomEditor(typeof(JitterMotion))]
+    [CustomEditor(typeof(JitterMotion)), CanEditMultipleObjects]
     class JitterMotionEditor : Editor
     {
         SerializedProperty _positionAmount;

@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 
 namespace Klak.Timeline
 {
-    [CustomEditor(typeof(CyclicMotion))]
+    [CustomEditor(typeof(CyclicMotion)), CanEditMultipleObjects]
     class CyclicMotionEditor : Editor
     {
         SerializedProperty _positionAmount;

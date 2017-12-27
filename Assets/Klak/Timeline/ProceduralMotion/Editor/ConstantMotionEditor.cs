@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 
 namespace Klak.Timeline
 {
-    [CustomEditor(typeof(ConstantMotion))]
+    [CustomEditor(typeof(ConstantMotion)), CanEditMultipleObjects]
     class ConstantMotionEditor : Editor
     {
         SerializedProperty _position;
