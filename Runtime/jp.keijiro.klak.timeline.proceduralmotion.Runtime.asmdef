@@ -1,0 +1,8 @@
+{
+    "name": "jp.keijiro.klak.timeline.proceduralmotion.Runtime",
+    "references": ["jp.keijiro.klak.Runtime"],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

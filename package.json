@@ -1,0 +1,8 @@
+{
+    "name": "jp.keijiro.klak.timeline.procedural-motion",
+    "displayName": "Klak Procedural Motion",
+    "version": "0.0.1",
+    "unity": "2018.1",
+    "description": "Custom timeline track that controls object transforms with simple procedural motions.",
+    "dependencies": { }
+}
