@@ -21,6 +21,9 @@ namespace Klak.Timeline
 
         public override void GatherProperties(PlayableDirector director, IPropertyCollector driver)
         {
+            if (string.IsNullOrEmpty(template.componentName)) return;
+            if (string.IsNullOrEmpty(template.fieldName)) return;
+                
             var go = director.GetGenericBinding(this) as GameObject;
             if (go == null) return;
 

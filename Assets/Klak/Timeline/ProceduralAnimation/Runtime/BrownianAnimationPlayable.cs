@@ -14,6 +14,8 @@ namespace Klak.Timeline
 
         public float frequency = 1;
         public int octaves = 2;
+        public float amplitude = 1;
+        public float bias = 1;
         public uint randomSeed;
 
         #endregion
@@ -37,7 +39,7 @@ namespace Klak.Timeline
         public override void PrepareFrame(Playable playable, FrameData info)
         {
             var t = (float)playable.GetTime() * frequency;
-            CurrentValue = Fbm(_noiseOffset, t, octaves);
+            CurrentValue = Fbm(_noiseOffset, t, octaves) * amplitude + bias;
         }
 
         #endregion

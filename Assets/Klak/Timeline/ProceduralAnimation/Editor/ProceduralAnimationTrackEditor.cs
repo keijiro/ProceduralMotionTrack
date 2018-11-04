@@ -58,7 +58,8 @@ namespace Klak.Timeline
                 // Component selection drop-down
                 var name = _componentName.stringValue;
                 var index0 = System.Array.IndexOf(_componentNames, name);
-                var index1 = EditorGUILayout.Popup("Component", index0, _componentNames);
+                var index1 = EditorGUILayout.Popup
+                    ("Component", Mathf.Max(0, index0), _componentNames);
 
                 // Update the target on selection changes.
                 if (index0 != index1)
@@ -68,7 +69,9 @@ namespace Klak.Timeline
                 }
             }
 
-            if (go == null || string.IsNullOrEmpty(_componentName.stringValue))
+            var component = go?.GetComponent(_componentName.stringValue);
+
+            if (component == null)
             {
                 // No component selection: Simple present a normal text field.
                 EditorGUILayout.PropertyField(_propertyName);
@@ -76,19 +79,30 @@ namespace Klak.Timeline
             else
             {
                 // Retrieve and cache properties in the component.
-                CachePropertiesInComponent(go.GetComponent(_componentName.stringValue));
+                CachePropertiesInComponent(component);
 
-                // Property selection drop-down
-                var name = _propertyName.stringValue;
-                var index0 = System.Array.IndexOf(_propertyNames, name);
-                var index1 = EditorGUILayout.Popup("Property", index0, _propertyLabels);
-
-                // Update the target on selection changes.
-                if (index0 != index1)
+                if (_propertyNames.Length == 0)
                 {
-                    _propertyName.stringValue = _propertyNames[index1];
-                    _fieldName.stringValue = _fieldNames[index1];
-                    TimelineEditor.Refresh(RefreshReason.ContentsModified);
+                    // There is no supported property in the component.
+                    // Clear the property selection.
+                    _propertyName.stringValue = "";
+                    _fieldName.stringValue = "";
+                }
+                else
+                {
+                    // Property selection drop-down
+                    var name = _propertyName.stringValue;
+                    var index0 = System.Array.IndexOf(_propertyNames, name);
+                    var index1 = EditorGUILayout.Popup
+                        ("Property", Mathf.Max(index0, 0), _propertyLabels);
+
+                    // Update the target on selection changes.
+                    if (index0 != index1)
+                    {
+                        _propertyName.stringValue = _propertyNames[index1];
+                        _fieldName.stringValue = _fieldNames[index1];
+                        TimelineEditor.Refresh(RefreshReason.ContentsModified);
+                    }
                 }
             }
 
