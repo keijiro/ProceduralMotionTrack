@@ -19,8 +19,10 @@ namespace Klak.Timeline
         SerializedProperty _componentName;
         SerializedProperty _propertyName;
         SerializedProperty _fieldName;
-        SerializedProperty _vectorBase;
+        SerializedProperty _baseVector;
         SerializedProperty _rotationAxis;
+        SerializedProperty _colorAt0;
+        SerializedProperty _colorAt1;
 
         // Used in component selection drop-down
         string [] _componentNames;
@@ -38,8 +40,10 @@ namespace Klak.Timeline
             _componentName = serializedObject.FindProperty("template.componentName");
             _propertyName = serializedObject.FindProperty("template.propertyName");
             _fieldName = serializedObject.FindProperty("template.fieldName");
-            _vectorBase = serializedObject.FindProperty("template.vectorBase");
+            _baseVector = serializedObject.FindProperty("template.baseVector");
             _rotationAxis = serializedObject.FindProperty("template.rotationAxis");
+            _colorAt0 = serializedObject.FindProperty("template.colorAt0");
+            _colorAt1 = serializedObject.FindProperty("template.colorAt1");
         }
 
         public override void OnInspectorGUI()
@@ -112,9 +116,14 @@ namespace Klak.Timeline
                     // Show additional options for non-float types.
                     var type = _propertyTypes[index1];
                     if (type == SerializedPropertyType.Vector3)
-                        EditorGUILayout.PropertyField(_vectorBase);
+                        EditorGUILayout.PropertyField(_baseVector);
                     else if (type == SerializedPropertyType.Quaternion)
                         EditorGUILayout.PropertyField(_rotationAxis);
+                    else if (type == SerializedPropertyType.Color)
+                    {
+                        EditorGUILayout.PropertyField(_colorAt0);
+                        EditorGUILayout.PropertyField(_colorAt1);
+                    }
                 }
             }
 
@@ -156,7 +165,12 @@ namespace Klak.Timeline
                 words[i] = (i == 0 ? System.Char.ToLower(w[0]) :
                                      System.Char.ToUpper(w[0])) + w.Substring(1);
             }
-            return string.Join("", words);
+            name = string.Join("", words);
+
+            // We know Unity has some spelling inconsistencies. Let us solve it.
+            if (name == "backGroundColor") name = "backgroundColor"; // Camera.backgroundColor
+
+            return name;
         }
 
         // Check if the property type is supported one.
@@ -207,7 +221,7 @@ namespace Klak.Timeline
                         {
                             // Append this field.
                             pnames.Add(pname);
-                            labels.Add(itr.displayName);
+                            labels.Add(ObjectNames.NicifyVariableName(pname));
                             fnames.Add(itr.name);
                             types.Add(type);
                         }
