@@ -24,21 +24,10 @@ namespace Klak.Timeline
             var go = director.GetGenericBinding(this) as GameObject;
             if (go == null) return;
 
-            var componentType = go.GetComponent(template.componentName).GetType();
+            var component = go.GetComponent(template.componentName);
+            if (component == null) return;
 
-            foreach (var m in driver.GetType().GetMethods())
-            {
-                if (m.Name != "AddFromName") continue;
-                if (!m.IsGenericMethod) continue;
-
-                var args = m.GetParameters();
-                if (args.Length != 2) continue;
-                if (args[0].ParameterType != typeof(GameObject)) continue;
-                if (args[1].ParameterType != typeof(string)) continue;
-
-                var m2 = m.MakeGenericMethod(componentType);
-                m2.Invoke(driver, new object [] {go, template.fieldName});
-            }
+            driver.AddFromName(component.GetType(), go, template.fieldName);
         }
     }
 }
