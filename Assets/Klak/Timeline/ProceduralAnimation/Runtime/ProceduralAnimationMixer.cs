@@ -15,6 +15,8 @@ namespace Klak.Timeline
         public string componentName;
         public string propertyName;
         public string fieldName;
+        public Vector3 vectorBase;
+        public Vector3 rotationAxis;
 
         #endregion
 
@@ -47,7 +49,15 @@ namespace Klak.Timeline
                 _targetProperty = component.GetType().GetProperty(propertyName);
 
             if (_targetProperty != null)
-                _targetProperty.SetValue(component, acc, null);
+            {
+                if (_targetProperty.PropertyType == typeof(float))
+                    _targetProperty.SetValue(component, acc, null);
+                else if (_targetProperty.PropertyType == typeof(Vector3))
+                    _targetProperty.SetValue(component, vectorBase * acc, null);
+                else if (_targetProperty.PropertyType == typeof(Quaternion))
+                    _targetProperty.SetValue
+                        (component, Quaternion.AngleAxis(acc, rotationAxis), null);
+            }
         }
 
         #endregion

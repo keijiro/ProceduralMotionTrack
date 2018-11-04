@@ -19,6 +19,8 @@ namespace Klak.Timeline
         SerializedProperty _componentName;
         SerializedProperty _propertyName;
         SerializedProperty _fieldName;
+        SerializedProperty _vectorBase;
+        SerializedProperty _rotationAxis;
 
         // Used in component selection drop-down
         string [] _componentNames;
@@ -28,6 +30,7 @@ namespace Klak.Timeline
         string [] _propertyNames;
         string [] _propertyLabels;
         string [] _fieldNames;
+        SerializedPropertyType [] _propertyTypes;
         System.Type _cachedComponentType;
 
         void OnEnable()
@@ -35,6 +38,8 @@ namespace Klak.Timeline
             _componentName = serializedObject.FindProperty("template.componentName");
             _propertyName = serializedObject.FindProperty("template.propertyName");
             _fieldName = serializedObject.FindProperty("template.fieldName");
+            _vectorBase = serializedObject.FindProperty("template.vectorBase");
+            _rotationAxis = serializedObject.FindProperty("template.rotationAxis");
         }
 
         public override void OnInspectorGUI()
@@ -103,6 +108,13 @@ namespace Klak.Timeline
                         _fieldName.stringValue = _fieldNames[index1];
                         TimelineEditor.Refresh(RefreshReason.ContentsModified);
                     }
+
+                    // Show additional options for non-float types.
+                    var type = _propertyTypes[index1];
+                    if (type == SerializedPropertyType.Vector3)
+                        EditorGUILayout.PropertyField(_vectorBase);
+                    else if (type == SerializedPropertyType.Quaternion)
+                        EditorGUILayout.PropertyField(_rotationAxis);
                 }
             }
 
@@ -147,6 +159,15 @@ namespace Klak.Timeline
             return string.Join("", words);
         }
 
+        // Check if the property type is supported one.
+        static bool IsPropertyTypeSupported(SerializedPropertyType type)
+        {
+            return type == SerializedPropertyType.Float ||
+                   type == SerializedPropertyType.Vector3 ||
+                   type == SerializedPropertyType.Quaternion ||
+                   type == SerializedPropertyType.Color;
+        }
+
         // Enumerate components attached to a given game object.
         void CacheComponentsInGameObject(GameObject go)
         {
@@ -171,13 +192,14 @@ namespace Klak.Timeline
             var pnames = new List<string>();
             var labels = new List<string>();
             var fnames = new List<string>();
+            var types = new List<SerializedPropertyType>();
 
             if (itr.NextVisible(true))
             {
                 while (true)
                 {
-                    // Check if the field is supported type.
-                    if (itr.propertyType == SerializedPropertyType.Float)
+                    var type = itr.propertyType;
+                    if (IsPropertyTypeSupported(type))
                     {
                         // Check if the field has a corresponding property.
                         var pname = FieldToPropertyName(itr.name);
@@ -187,6 +209,7 @@ namespace Klak.Timeline
                             pnames.Add(pname);
                             labels.Add(itr.displayName);
                             fnames.Add(itr.name);
+                            types.Add(type);
                         }
                     }
 
@@ -196,11 +219,13 @@ namespace Klak.Timeline
                 _propertyNames = pnames.ToArray();
                 _propertyLabels = labels.ToArray();
                 _fieldNames = fnames.ToArray();
+                _propertyTypes = types.ToArray();
             }
             else
             {
                 // Failed to retrieve properties.
                 _propertyNames = _fieldNames = _propertyLabels = new string [0];
+                _propertyTypes = new SerializedPropertyType [0];
             }
 
             _cachedComponentType = componentType;
