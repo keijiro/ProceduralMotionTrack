@@ -3,7 +3,7 @@
 
 using UnityEngine;
 using UnityEngine.Playables;
-using Klak.Math;
+using Unity.Mathematics;
 
 namespace Klak.Timeline
 {
@@ -14,7 +14,7 @@ namespace Klak.Timeline
 
         public Vector3 positionAmount = Vector3.one * 0.1f;
         public Vector3 rotationAmount = Vector3.one * 3;
-        public int randomSeed;
+        public uint randomSeed;
 
         #endregion
 
@@ -26,16 +26,16 @@ namespace Klak.Timeline
             if (target == null) return;
 
             var t = (float)playable.GetTime();
-            var id = (int)(t * 1e+6f % 0xfffffff);
-            var hash = new XXHash(randomSeed ^ id);
+            var id = (uint)(t * 1e+6f % 0xfffffff);
+            var rand = new Unity.Mathematics.Random((randomSeed + 1) ^ id);
 
-            var p = new Vector3(hash.Value01(0), hash.Value01(1), hash.Value01(2));
-            var r = new Vector3(hash.Value01(3), hash.Value01(4), hash.Value01(5));
+            var p = rand.NextFloat3();
+            var r = rand.NextFloat3();
 
-            p = Vector3.Scale(p * 2 - Vector3.one, positionAmount) * info.weight;
-            r = Vector3.Scale(r * 2 - Vector3.one, rotationAmount) * info.weight;
+            p = (p * 2 - 1) * positionAmount * info.weight;
+            r = (r * 2 - 1) * rotationAmount * info.weight;
 
-            target.localPosition += p;
+            target.localPosition += (Vector3)p;
             target.localRotation = Quaternion.Euler(r) * target.localRotation;
         }
 

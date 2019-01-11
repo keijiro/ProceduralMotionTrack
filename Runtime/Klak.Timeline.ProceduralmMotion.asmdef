@@ -1,6 +1,6 @@
 {
-    "name": "jp.keijiro.klak.timeline.proceduralmotion.Runtime",
-    "references": ["jp.keijiro.klak.Runtime"],
+    "name": "Klak.Timeline.ProceduralMotion",
+    "references": [],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],

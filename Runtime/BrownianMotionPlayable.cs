@@ -3,7 +3,7 @@
 
 using UnityEngine;
 using UnityEngine.Playables;
-using Klak.Math;
+using Unity.Mathematics;
 
 namespace Klak.Timeline
 {
@@ -16,30 +16,38 @@ namespace Klak.Timeline
         public Vector3 rotationAmount = Vector3.one * 10;
         public float frequency = 1;
         public int octaves = 2;
-        public int randomSeed;
+        public uint randomSeed;
+
+        #endregion
+
+        #region Private functions
+
+        float Fbm(float x, float y, int octave)
+        {
+            var p = math.float2(x, y);
+            var f = 0.0f;
+            var w = 0.5f;
+            for (var i = 0; i < octave; i++)
+            {
+                f += w * noise.snoise(p);
+                p *= 2.0f;
+                w *= 0.5f;
+            }
+            return f;
+        }
 
         #endregion
 
         #region PlayableBehaviour overrides
 
-        Vector3 _positionOffset;
-        Vector3 _rotationOffset;
+        float3 _positionOffset;
+        float3 _rotationOffset;
 
         public override void OnPlayableCreate(Playable playable)
         {
-            var hash = new XXHash(randomSeed);
-
-            _positionOffset = new Vector3(
-                hash.Range(-1e3f, 1e3f, 0),
-                hash.Range(-1e3f, 1e3f, 1),
-                hash.Range(-1e3f, 1e3f, 2)
-            );
-
-            _rotationOffset = new Vector3(
-                hash.Range(-1e3f, 1e3f, 0),
-                hash.Range(-1e3f, 1e3f, 1),
-                hash.Range(-1e3f, 1e3f, 2)
-            );
+            var rand = new Unity.Mathematics.Random(randomSeed + 1);
+            _positionOffset = rand.NextFloat3(-1e3f, 1e3f);
+            _rotationOffset = rand.NextFloat3(-1e3f, 1e3f);
         }
 
         public override void ProcessFrame(Playable playable, FrameData info, object playerData)
@@ -50,22 +58,22 @@ namespace Klak.Timeline
             var t = (float)playable.GetTime() * frequency;
             var w = info.weight / 0.75f; // normalized weight
 
-            var np = new Vector3(
-                Perlin.Fbm(_positionOffset.x + t, octaves),
-                Perlin.Fbm(_positionOffset.y + t, octaves),
-                Perlin.Fbm(_positionOffset.z + t, octaves)
+            var np = math.float3(
+                Fbm(_positionOffset.x, t, octaves),
+                Fbm(_positionOffset.y, t, octaves),
+                Fbm(_positionOffset.z, t, octaves)
             );
 
-            var nr = new Vector3(
-                Perlin.Fbm(_rotationOffset.x + t, octaves),
-                Perlin.Fbm(_rotationOffset.y + t, octaves),
-                Perlin.Fbm(_rotationOffset.z + t, octaves)
+            var nr = math.float3(
+                Fbm(_rotationOffset.x, t, octaves),
+                Fbm(_rotationOffset.y, t, octaves),
+                Fbm(_rotationOffset.z, t, octaves)
             );
 
-            np = Vector3.Scale(np, positionAmount) * w;
-            nr = Vector3.Scale(nr, rotationAmount) * w;
+            np = np * positionAmount * w;
+            nr = nr * rotationAmount * w;
 
-            target.localPosition += np;
+            target.localPosition += (Vector3)np;
             target.localRotation = Quaternion.Euler(nr) * target.localRotation;
         }
 

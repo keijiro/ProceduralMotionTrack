@@ -1,7 +1,7 @@
 {
-    "name": "jp.keijiro.klak.timeline.proceduralmotion.Editor",
+    "name": "Klak.Timeline.ProceduralMotion.Editor",
     "references": [
-        "jp.keijiro.klak.timeline.proceduralmotion.Runtime"
+        "Klak.Timeline.ProceduralMotion"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [
