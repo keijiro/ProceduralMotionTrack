@@ -24,9 +24,4 @@ System Requirements
 License
 -------
 
-Copyright (c) 2017 Unity Technologies
-
-This repository is to be treated as an example content of Unity; you can use
-the code freely in your projects. Also see the [FAQ] about example contents.
-
-[FAQ]: https://unity3d.com/unity/faq#faq-37863
+[Unity Companion License](https://unity3d.com/legal/licenses/Unity_Companion_License)
