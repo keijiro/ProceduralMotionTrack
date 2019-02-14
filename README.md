@@ -24,4 +24,4 @@ System Requirements
 License
 -------
 
-[Unity Companion License](https://unity3d.com/legal/licenses/Unity_Companion_License)
+[CC0](https://creativecommons.org/share-your-work/public-domain/cc0/)
