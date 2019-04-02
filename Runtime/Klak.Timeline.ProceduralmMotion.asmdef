@@ -1,6 +1,6 @@
 {
     "name": "Klak.Timeline.ProceduralMotion",
-    "references": [ "Unity.Mathematics" ],
+    "references": [ "Unity.Mathematics", "Unity.Timeline" ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
