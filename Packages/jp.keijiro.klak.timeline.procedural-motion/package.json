@@ -1,11 +1,15 @@
 {
-    "name": "jp.keijiro.klak.timeline.procedural-motion",
-    "displayName": "Klak Procedural Motion",
-    "version": "0.1.0",
-    "unity": "2018.3",
     "author": "Keijiro Takahashi",
-    "description": "Custom timeline track that controls object transforms with simple procedural motions.",
     "dependencies": {
-        "com.unity.mathematics": "0.0.12-preview.19"
-    }
+        "com.unity.timeline": "1.1.0",
+        "com.unity.mathematics": "1.1.0"
+    },
+    "description": "Custom timeline track that controls object transforms with simple procedural motions.",
+    "displayName": "Procedural Motion Track Library",
+    "keywords": [ "unity" ],
+    "license": "Unlicense",
+    "name": "jp.keijiro.klak.timeline.procedural-motion",
+    "unity": "2019.2",
+    "unityRelease": "0f1",
+    "version": "0.1.1"
 }

@@ -1,8 +1,6 @@
 {
   "dependencies": {
-    "com.unity.mathematics": "1.1.0",
     "com.unity.package-manager-ui": "2.2.0",
-    "com.unity.timeline": "1.1.0",
     "com.unity.modules.director": "1.0.0",
     "com.unity.modules.imgui": "1.0.0",
     "com.unity.modules.particlesystem": "1.0.0"
