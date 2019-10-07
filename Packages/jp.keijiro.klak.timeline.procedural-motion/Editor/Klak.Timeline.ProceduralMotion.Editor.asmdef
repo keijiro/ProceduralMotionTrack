@@ -1,0 +1,12 @@
+{
+    "name": "Klak.Timeline.ProceduralMotion.Editor",
+    "references": [
+        "Klak.Timeline.ProceduralMotion"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
