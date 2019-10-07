@@ -11,9 +11,9 @@ namespace Klak.Timeline
     {
         #region PlayableBehaviour overrides
 
-        public override void ProcessFrame(Playable playable, FrameData info, object playerData)
+        public override void PrepareFrame(Playable playable, FrameData info)
         {
-            var target = playerData as Transform;
+            var target = info.output.GetUserData() as Transform;
             if (target != null)
             {
                 // Reset the target transform.
