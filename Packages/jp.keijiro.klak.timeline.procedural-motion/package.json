@@ -1,8 +1,9 @@
 {
     "author": "Keijiro Takahashi",
     "dependencies": {
-        "com.unity.timeline": "1.3.3",
-        "com.unity.mathematics": "1.1.0"
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.timeline": "1.4.2",
+        "com.unity.mathematics": "1.2.1"
     },
     "description": "Custom timeline track that controls object transforms with simple procedural motions.",
     "displayName": "Procedural Motion Track Library",
@@ -11,5 +12,5 @@
     "name": "jp.keijiro.klak.timeline.procedural-motion",
     "unity": "2019.4",
     "unityRelease": "0f1",
-    "version": "0.1.3"
+    "version": "1.0.0"
 }
