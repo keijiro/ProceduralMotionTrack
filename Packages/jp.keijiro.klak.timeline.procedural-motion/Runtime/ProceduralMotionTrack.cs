@@ -15,6 +15,9 @@ namespace Klak.Timeline
     [TrackBindingType(typeof(Transform))]
     public class ProceduralMotionTrack : TrackAsset
     {
+        [SerializeField]
+        bool animateRelativeToInitialPosition = true;
+
         public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
         {
             var transform = go.GetComponent<PlayableDirector>().GetGenericBinding(this) as Transform;
@@ -25,9 +28,17 @@ namespace Klak.Timeline
             var playable = ScriptPlayable<ProceduralMotionMixer>.Create(graph, inputCount);
             var behaviour = playable.GetBehaviour();
 
-            // Remember object's initial position and rotation.
-            behaviour.InitialPosition = transform.position;
-            behaviour.InitialRotation = transform.rotation;
+            if (animateRelativeToInitialPosition)
+            {
+                // Remember object's initial position and rotation.
+                behaviour.InitialPosition = transform.position;
+                behaviour.InitialRotation = transform.rotation;
+            }
+            else
+            {
+                behaviour.InitialPosition = Vector3.zero;
+                behaviour.InitialRotation = Quaternion.identity;
+            }
 
             return playable;
         }
