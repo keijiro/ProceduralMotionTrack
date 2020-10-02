@@ -17,7 +17,19 @@ namespace Klak.Timeline
     {
         public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
         {
-            return ScriptPlayable<ProceduralMotionMixer>.Create(graph, inputCount);
+            var transform = go.GetComponent<PlayableDirector>().GetGenericBinding(this) as Transform;
+
+            if (transform == null)
+                return Playable.Null;
+
+            var playable = ScriptPlayable<ProceduralMotionMixer>.Create(graph, inputCount);
+            var behaviour = playable.GetBehaviour();
+
+            // Remember object's initial position and rotation.
+            behaviour.InitialPosition = transform.position;
+            behaviour.InitialRotation = transform.rotation;
+
+            return playable;
         }
 
         public override void GatherProperties(PlayableDirector director, IPropertyCollector driver)

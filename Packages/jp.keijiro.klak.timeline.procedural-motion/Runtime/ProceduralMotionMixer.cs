@@ -9,6 +9,9 @@ namespace Klak.Timeline
     [System.Serializable]
     public class ProceduralMotionMixer : PlayableBehaviour
     {
+        public Vector3 InitialPosition { private get; set; }
+        public Quaternion InitialRotation { private get; set; }
+
         #region PlayableBehaviour overrides
 
         public override void PrepareFrame(Playable playable, FrameData info)
@@ -18,8 +21,8 @@ namespace Klak.Timeline
             {
                 // Reset the target transform.
                 // It'll be modified in clip playables.
-                target.localPosition = Vector3.zero;
-                target.localRotation = Quaternion.identity;
+                target.localPosition = InitialPosition;
+                target.localRotation = InitialRotation;
             }
         }
 
