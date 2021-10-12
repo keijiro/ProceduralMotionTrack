@@ -24,15 +24,8 @@ namespace Klak.Timeline
         {
             var transform = director.GetGenericBinding(this) as Transform;
             if (transform == null) return;
-
-            var go = transform.gameObject;
-            driver.AddFromName<Transform>(go, "m_LocalPosition.x");
-            driver.AddFromName<Transform>(go, "m_LocalPosition.y");
-            driver.AddFromName<Transform>(go, "m_LocalPosition.z");
-            driver.AddFromName<Transform>(go, "m_LocalRotation.x");
-            driver.AddFromName<Transform>(go, "m_LocalRotation.y");
-            driver.AddFromName<Transform>(go, "m_LocalRotation.z");
-            driver.AddFromName<Transform>(go, "m_LocalRotation.w");
+            driver.AddFromName(transform, "m_LocalPosition");
+            driver.AddFromName(transform, "m_LocalRotation");
         }
     }
 }
