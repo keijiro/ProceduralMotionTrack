@@ -32,6 +32,7 @@ namespace Klak.Timeline
             driver.AddFromName<Transform>(go, "m_LocalRotation.x");
             driver.AddFromName<Transform>(go, "m_LocalRotation.y");
             driver.AddFromName<Transform>(go, "m_LocalRotation.z");
+            driver.AddFromName<Transform>(go, "m_LocalRotation.w");
         }
     }
 }
