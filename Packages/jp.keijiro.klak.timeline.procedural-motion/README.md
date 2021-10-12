@@ -45,7 +45,7 @@ To the `scopedRegistries` section:
 To the `dependencies` section:
 
 ```
-"jp.keijiro.klak.timeline.procedural-motion": "1.0.1"
+"jp.keijiro.klak.timeline.procedural-motion": "1.0.2"
 ```
 
 After changes, the manifest file should look like below:
@@ -60,6 +60,6 @@ After changes, the manifest file should look like below:
     }
   ],
   "dependencies": {
-    "jp.keijiro.klak.timeline.procedural-motion": "1.0.1",
+    "jp.keijiro.klak.timeline.procedural-motion": "1.0.2",
     ...
 ```
