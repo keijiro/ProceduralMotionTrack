@@ -24,9 +24,9 @@ public sealed class FollowerMotionPlayable : PlayableBehaviour
 
     #region Private members
 
-    bool _valid;
     float3 _p, _vp;
     float4 _r, _vr;
+    float _prevTime;
 
     float4 Q2F4(quaternion q) => q.value;
 
@@ -35,21 +35,23 @@ public sealed class FollowerMotionPlayable : PlayableBehaviour
     #region PlayableBehaviour overrides
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
-      => _valid = false;
+      => _prevTime = -1;
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
         var self = playerData as Transform;
         if (self == null || Target == null) return;
 
-        if (!_valid)
+        var time = (float)playable.GetTime();
+
+        if (_prevTime < 0)
         {
             (_p, _vp) = (self.position, 0);
             (_r, _vr) = (Q2F4(self.rotation), 0);
-            _valid = true;
+            _prevTime = time;
         }
 
-        var dt = math.abs((float)(playable.GetTime() - playable.GetPreviousTime()));
+        var dt = math.abs(time - _prevTime);
         var w = info.weight;
 
         if (positionSpeed > 0)
@@ -106,6 +108,8 @@ public sealed class FollowerMotionPlayable : PlayableBehaviour
             var r = math.lerp(Q2F4(self.rotation), _r, w);
             self.rotation = math.normalize(math.quaternion(r));
         }
+
+        _prevTime = time;
     }
 
     #endregion
