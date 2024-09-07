@@ -11,6 +11,7 @@ namespace Klak.Timeline
     [TrackClipType(typeof(BrownianMotion))]
     [TrackClipType(typeof(ConstantMotion))]
     [TrackClipType(typeof(CyclicMotion))]
+    [TrackClipType(typeof(FollowerMotion))]
     [TrackClipType(typeof(JitterMotion))]
     [TrackBindingType(typeof(Transform))]
     public class ProceduralMotionTrack : TrackAsset
