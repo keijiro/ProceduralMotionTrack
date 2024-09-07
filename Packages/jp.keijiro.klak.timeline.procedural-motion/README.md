@@ -3,63 +3,32 @@ ProceduralMotionTrack
 
 ![gif](https://i.imgur.com/jlE9XbR.gif)
 
-This is an implementation of a custom timeline track that controls an object
-transform with simple procedural motions.
+**ProceduralMotionTrack** is a custom Unity Timeline track that controls an
+object’s transform using simple procedural motions.
 
-At the moment, it has four types of motions:
+Currently, it supports five types of motion:
 
-- Constant Motion: Fix an object to a specified point.
-- Cyclic Motion: Move an object with sine wave functions.
-- Brownian Motion: Move an object with a fractal Brownian motion.
-- Jitter Motion: Move an object with random values.
+- **Constant Motion**: Fixes an object at a specified position.
+- **Cyclic Motion**: Moves an object using sine wave functions.
+- **Brownian Motion**: Moves an object with fractal Brownian motion.
+- **Follower Motion**: Makes an object follow another target.
+- **Jitter Motion**: Moves an object with random values.
 
 These motions can be blended by overlapping clips.
 
-Procedural Motion track supports extrapolation that is useful to give an
-infinite motion during an entire timeline.
+ProceduralMotionTrack also supports extrapolation, which is useful for creating
+continuous motion throughout the entire timeline.
 
 System Requirements
 -------------------
 
-- Unity 2019.4 or later
+- Unity 6
 
-How To Install
---------------
+Installation
+------------
 
-This package uses the [scoped registry] feature to resolve package
-dependencies. Please add the following sections to the manifest file
-(Packages/manifest.json).
+[Follow these instructions] to set up the scoped registry. Then, install the
+ProceduralMotionTrack package via the Unity Package Manager.
 
-[scoped registry]: https://docs.unity3d.com/Manual/upm-scoped.html
-
-To the `scopedRegistries` section:
-
-```
-{
-  "name": "Keijiro",
-  "url": "https://registry.npmjs.com",
-  "scopes": [ "jp.keijiro" ]
-}
-```
-
-To the `dependencies` section:
-
-```
-"jp.keijiro.klak.timeline.procedural-motion": "1.0.2"
-```
-
-After changes, the manifest file should look like below:
-
-```
-{
-  "scopedRegistries": [
-    {
-      "name": "Keijiro",
-      "url": "https://registry.npmjs.com",
-      "scopes": [ "jp.keijiro" ]
-    }
-  ],
-  "dependencies": {
-    "jp.keijiro.klak.timeline.procedural-motion": "1.0.2",
-    ...
-```
+[Follow these instructions]:
+  https://gist.github.com/keijiro/f8c7e8ff29bfe63d86b888901b82644c
