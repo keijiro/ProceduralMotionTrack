@@ -45,11 +45,7 @@ public sealed class FollowerMotionPlayable : PlayableBehaviour
 
     // Clip initialization
     public override void OnBehaviourPlay(Playable playable, FrameData info)
-    {
-        _current = (Target.position, Q2F4(Target.rotation));
-        _velocity = (0, 0);
-        _prevTime = (float)playable.GetTime();
-    }
+      => _prevTime = -1;
 
     // Per-frame initialization
     public override void PrepareFrame(Playable playable, FrameData info)
@@ -67,9 +63,19 @@ public sealed class FollowerMotionPlayable : PlayableBehaviour
         var self = playerData as Transform;
         if (self == null || Target == null) return;
 
+        if (_prevTime < 0)
+        {
+            // State initialization
+            _current = (Target.position, Q2F4(Target.rotation));
+            _velocity = (0, 0);
+            _prevTime = (float)playable.GetTime();
+        }
+
+        // Parameters (delta time and clip weight)
         var dt = CalculateDeltaTime(playable);
         var w = info.weight;
 
+        // Position interpolation
         if (positionSpeed > 0)
         {
             var target = (float3)Target.position;
@@ -96,6 +102,7 @@ public sealed class FollowerMotionPlayable : PlayableBehaviour
             self.position += (Vector3)((_current.p - _origin.p) * w);
         }
 
+        // Rotation interpolation
         if (rotationSpeed > 0)
         {
             var target = Q2F4(Target.rotation);
